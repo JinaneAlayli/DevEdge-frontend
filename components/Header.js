@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react"; // Icons for mobile menu
+import { Menu, X } from "lucide-react";  
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="bg-blue-600 text-white px-6 md:px-12 lg:px-20 py-4">
       <div className="flex items-center justify-between">
-        {/* Left: Mobile Menu Button & Logo */}
+       
         <div className="flex items-center space-x-4">
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -44,8 +44,8 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Right: Contact Button (with some space after the nav) */}
-        <div className="ml-6"> {/* Added space to the left */}
+         
+        <div className="ml-6">  
           <Link
             href="/contact"
             className="bg-white text-black px-4 py-2 rounded-none hover:bg-gray-200 transition duration-300"
@@ -54,8 +54,7 @@ export default function Header() {
           </Link>
         </div>
       </div>
-
-      {/* Mobile Navigation Dropdown */}
+ 
       {isOpen && (
         <nav className="md:hidden mt-4 bg-blue-700 p-4 rounded-lg">
           <ul className="flex flex-col space-y-4 text-lg">

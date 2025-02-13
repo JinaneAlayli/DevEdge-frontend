@@ -5,32 +5,39 @@ import { Services } from "@/components/Services";
 import { RequestConsultation } from "@/components/RequestConsultation";
 import { RecentProjects } from "@/components/RecentProjects";
 import Loading from "@/components/Loading";
+import Footer from '../components/Footer';
+
 export default async function HomePage() {
-  let data;
+  let homeData, portfolioData;
 
   try {
-    const res = await fetch("http://localhost:5000/api/home");  
-    if (!res.ok) throw new Error("Failed to fetch data");
+     
+    const homeRes = await fetch("http://localhost:5000/api/home");
+    if (!homeRes.ok) throw new Error("Failed to fetch home data");
+    homeData = (await homeRes.json()).data;
 
-    const response = await res.json();
-    data = response.data;  
+     
+    const portfolioRes = await fetch("http://localhost:5000/api/portfolio");
+    if (!portfolioRes.ok) throw new Error("Failed to fetch portfolio data");
+    portfolioData = (await portfolioRes.json()).data.portfolio.projects;  
   } catch (error) {
-    return <div>Error: {error.message}</div>;  
+    return <div>Error: {error.message}</div>;
   }
 
   return (
     <>
-      <Header /> 
-      {data ? (
+      <Header />
+      {homeData && portfolioData ? (
         <>
-          <Hero data={data.hero} />
-          <About data={data.about} />
-          <Services data={data.services} />
-          <RequestConsultation data={data.requestConsultation} />
-          <RecentProjects data={data.recentProject} />
+          <Hero data={homeData.hero} />
+          <About data={homeData.about} portfolioData={portfolioData} />
+          <Services data={homeData.services} />
+          <RequestConsultation data={homeData.requestConsultation} />
+          <RecentProjects data={homeData.recentProject} portfolioData={portfolioData} />
+          <Footer />
         </>
       ) : (
-        <Loading />  
+        <Loading />
       )}
     </>
   );
