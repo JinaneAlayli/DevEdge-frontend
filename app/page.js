@@ -18,7 +18,7 @@ export default async function HomePage() {
     homeData = (await homeRes.json()).data;
 
      
-    const portfolioRes = await fetch(`${backendUrl}/api/home`);;
+    const portfolioRes = await fetch(`${backendUrl}/api/portfolio`);;
     if (!portfolioRes.ok) throw new Error("Failed to fetch portfolio data");
     portfolioData = (await portfolioRes.json()).data.portfolio.projects;  
   } catch (error) {
