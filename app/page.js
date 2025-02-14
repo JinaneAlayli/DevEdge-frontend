@@ -9,15 +9,16 @@ import Footer from '../components/Footer';
 
 export default async function HomePage() {
   let homeData, portfolioData;
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   try {
      
-    const homeRes = await fetch("http://localhost:5000/api/home");
+    const homeRes = await fetch(`${backendUrl}/api/home`);;
     if (!homeRes.ok) throw new Error("Failed to fetch home data");
     homeData = (await homeRes.json()).data;
 
      
-    const portfolioRes = await fetch("http://localhost:5000/api/portfolio");
+    const portfolioRes = await fetch(`${backendUrl}/api/home`);;
     if (!portfolioRes.ok) throw new Error("Failed to fetch portfolio data");
     portfolioData = (await portfolioRes.json()).data.portfolio.projects;  
   } catch (error) {

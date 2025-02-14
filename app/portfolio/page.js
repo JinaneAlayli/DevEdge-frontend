@@ -6,8 +6,9 @@ import Footer from "@/components/Footer";
 
 export default async function PortfolioPage() {
   let data;
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   try {
-    const res = await fetch("http://localhost:5000/api/portfolio");
+    const res = await fetch(`${backendUrl}/api/portfolio`);
     if (!res.ok) throw new Error("Failed to fetch portfolio data");
     data = await res.json();
   } catch (error) {
