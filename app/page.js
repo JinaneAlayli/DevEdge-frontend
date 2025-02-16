@@ -26,8 +26,7 @@ export default async function HomePage() {
   }
 
   return (
-    <>
-      <Header />
+    <> 
       {homeData && portfolioData ? (
         <>
           <Hero data={homeData.hero} />
