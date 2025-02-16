@@ -1,8 +1,6 @@
-import React from "react";
 import ProjectCard from "./ProjectCard";
 
 export function RecentProjects({ data, portfolioData }) {
-   
   const recentProjects = portfolioData
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 2);
@@ -10,26 +8,28 @@ export function RecentProjects({ data, portfolioData }) {
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-800">{data.title}</h2>
- 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
+        <h2 className="text-3xl font-bold text-black mb-8">{data.title}</h2>
+
+        <div className="flex flex-col md:flex-row justify-center items-center my-8 space-y-4 md:space-y-0 md:space-x-6">
           {recentProjects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              title={project.title}
-              slug={project.slug}
-              imageUrl={project.imageUrl}
-              link={project.link}
-              width={300}
-              height={200}
-            />
+            <div className="flex justify-center" key={index}>
+              <ProjectCard
+                title={project.title}
+                slug={project.slug}
+                imageUrl={project.imageUrl}
+                link={project.link}
+                width={500}
+                height={416}
+              />
+            </div>
           ))}
         </div>
- 
+
         <a
           href={data.buttonLink}
-          className="mt-6 inline-block bg-blue-600 text-white px-6 py-2 font-medium"
-        >
+          
+          className="inline-block bg-[#27273D] text-white px-6 py-3 w-[262px] text-center text-sm font-medium shadow-md hover:bg-[#FFB300] hover:text-white transition-all">
+         
           {data.buttonText}
         </a>
       </div>

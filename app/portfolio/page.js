@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
 import Quotation from "@/components/Quotation";
 import Technologies from "@/components/Technologies";
-import Footer from "@/components/Footer"; 
 
 export default async function PortfolioPage() {
   let data;
@@ -19,19 +19,22 @@ export default async function PortfolioPage() {
 
   return (
     <>
-      <Header />
-     
-      <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-3xl font-bold text-center mb-4">{title}</h1>
-        <p className="max-w-2xl mx-auto text-center mb-8">{description}</p>
-        
-        <h2 className="text-2xl font-bold mb-4">{portfolio.title}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Header isFixed={true} bgColor="#27273D" />
+      <div className=" sm:px-[160px] min-h-screen bg-gray-100 p-8 pt-[180px] flex flex-col space-y-8">
+        <h1 className="text-4xl font-bold text-left">{title}</h1>
+         
+        <p className="w-full sm:max-w-[60%] text-lg leading-relaxed">{description}</p>
+
+        <h2 className="text-3xl font-bold text-center">{portfolio.title}</h2>
+ 
+        <div className="max-w-[1000px] mx-auto flex flex-wrap justify-center gap-2">
           {portfolio.projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <div key={index} className="w-full sm:w-[calc(50%-0.25rem)]">
+              <ProjectCard {...project} />
+            </div>
           ))}
         </div>
-        
+
         {quotation && <Quotation {...quotation} />}
         {technology && <Technologies {...technology} />}
       </div>
